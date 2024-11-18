@@ -134,7 +134,7 @@ public async Task UpdateAsync(Genre genre)
     // Se não der, captura a exceção lançada
     catch (DbUpdateConcurrencyException ex)
     {
-        throw new DbConcorrencyException(ex.Message);
+        throw new DbConcurrencyException(ex.Message);
     }
 }
 ```
