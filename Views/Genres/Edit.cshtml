@@ -1,0 +1,34 @@
+﻿@model Bookstore.Models.Genre
+
+@{
+    ViewData["Title"] = "Editar Gênero Literário";
+}
+
+<h1 class="text-primary-emphasis">@ViewData["Title"]</h1>
+
+<h4 class="lead text-secondary-emphasis">Altere as informações desejadas abaixo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <!-- Esse input oculto contribui para que a requisição de edição seja feita apropriadamente -->
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-5 mt-3">
+                <input type="submit" value="Salvar Alterações" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="text-primary">Voltar para a lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

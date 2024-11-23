@@ -1,0 +1,27 @@
+﻿@model Bookstore.Models.Genre
+
+@{
+    ViewData["Title"] = "Apagar Gênero Literário";
+}
+
+<h1 class="text-primary-emphasis">@ViewData["Title"]</h1>
+
+<h4 class="lead text-secondary-emphasis mb-4">Tem certeza que deseja apagar este Gênero Literário?</h4>
+<div>
+    <h4 class="text-primary-emphasis">Gênero Literário</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2 text-primary-emphasis">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10 text-primary-emphasis">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id"/>
+        <input type="submit" value="Apagar" class="btn btn-outline-danger" /> |
+        <a asp-action="Index" class="text-primary">Voltar para a lista</a>
+    </form>
+</div>

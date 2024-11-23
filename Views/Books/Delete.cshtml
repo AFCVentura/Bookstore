@@ -1,0 +1,57 @@
+﻿@model Bookstore.Models.Book
+
+@{
+    ViewData["Title"] = "Apagar Livro";
+}
+
+<h1 class="text-primary-emphasis">@ViewData["Title"]</h1>
+
+<h3 class="lead text-secondary-emphasis mb-4">Tem certeza que deseja apagar este livro?</h3>
+<div>
+    <h4 class="text-primary-emphasis">Livro</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2 text-primary-emphasis">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10 text-primary-emphasis">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2 text-primary-emphasis">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10 text-primary-emphasis">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class="col-sm-2 text-primary-emphasis">
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd class="col-sm-10 text-primary-emphasis">
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+        <dt class="col-sm-2 text-primary-emphasis">
+            @Html.DisplayNameFor(model => model.ReleaseYear)
+        </dt>
+        <dd class="col-sm-10 text-primary-emphasis">
+            @Html.DisplayFor(model => model.ReleaseYear)
+        </dd>
+        <dt class="col-sm-2 text-primary-emphasis">
+            @Html.DisplayNameFor(model => model.Genres)
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (Genre genre in Model.Genres)
+            {
+                <a asp-controller="Genres" asp-action="Details" asp-route-id="@genre.Id" class="text-primary">
+                    @Html.DisplayFor(genreItem => genre.Name)
+                </a>
+                <br />
+            }
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Apagar" class="btn btn-outline-danger" /> |
+        <a asp-action="Index" class="text-primary">Voltar para a lista</a>
+    </form>
+</div>

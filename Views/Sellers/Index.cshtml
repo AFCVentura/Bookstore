@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Bookstore.Models.Seller>
+
+@{
+    ViewData["Title"] = "Vendedores";
+}
+
+<h1 class="text-primary-emphasis">@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="text-primary">Adicionar novo Vendedor</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th class="text-primary-emphasis">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="text-primary-emphasis">
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th class="text-primary-emphasis">
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th class="text-primary-emphasis">
+                Total de Vendas
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="text-primary-emphasis">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="text-primary-emphasis">
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td class="text-primary-emphasis">
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td class="text-primary-emphasis">
+                @item.CalculateTotalSalesAmount().ToString("C2")
+            </td>
+            <td>
+                    <a type="button"
+                       title="Detalhes"
+                       class="btn btn-outline-info px-2 py-1 rounded mx-1"
+                       asp-action="Details"
+                       asp-route-id="@item.Id">
+                        <i class="bi bi-list-ul"></i>
+                    </a>
+                    <a type="button"
+                       title="Editar"
+                       class="btn btn-outline-warning px-2 py-1 rounded mx-1" asp-action="Edit"
+                       asp-route-id="@item.Id">
+                        <i class="bi bi-pencil-fill"></i>
+                    </a>
+                    <a type="button"
+                       title="Excluir"
+                       class="btn btn-outline-danger px-2 py-1 rounded mx-1"
+                       asp-action="Delete"
+                       asp-route-id="@item.Id">
+                        <i class="bi bi-trash-fill"></i>
+                    </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

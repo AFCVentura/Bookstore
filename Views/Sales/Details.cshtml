@@ -1,0 +1,46 @@
+﻿@model Bookstore.Models.Sale
+
+@{
+    ViewData["Title"] = $"Venda Nº {@Model.Id}";
+}
+
+<h1 class="text-primary-emphasis">@ViewData["Title"]</h1>
+
+<div>
+    <h4 class="lead text-secondary-emphasis">Detalhes da Venda</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2 text-primary-emphasis">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10 text-primary-emphasis">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2 text-primary-emphasis">
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+        <dd class="col-sm-10 text-primary-emphasis">
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+        <dt class = "col-sm-2 text-primary-emphasis">
+            @Html.DisplayNameFor(model => model.Books)
+        </dt>
+        <dd class="col-sm-10 text-primary-emphasis">
+            @foreach (Book book in Model.Books)
+            {
+                <a asp-controller="Books" asp-action="Details" asp-route-id="@book.Id" class="text-primary">@book.Title</a>
+                <br />
+            }
+        </dd>
+        <dt class="col-sm-2 text-primary-emphasis">
+            @Html.DisplayNameFor(model => model.Seller)
+        </dt>
+        <dd class="col-sm-10 text-primary-emphasis">
+            <a asp-controller="Sellers" asp-action="Details" asp-route-id="@Model.Seller.Id" class="text-primary">@Model.Seller.Name</a>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="text-primary">Editar</a> |
+    <a asp-action="Index" class="text-primary">Voltar para a lista</a>
+</div>

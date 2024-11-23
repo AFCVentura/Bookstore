@@ -1,0 +1,34 @@
+﻿@model Bookstore.Models.Genre
+
+@{
+    ViewData["Title"] = "Adicionar Gênero Literário";
+}
+
+<h1 class="text-primary-emphasis">@ViewData["Title"]</h1>
+
+<h4 class="lead text-secondary-emphasis">Preencha os campos abaixo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3 mb-5">
+                <input type="submit" value="Adicionar Gênero Literário" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="text-primary">Voltar para a lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

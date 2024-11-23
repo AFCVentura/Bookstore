@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Bookstore.Models.Book>
+
+@{
+    ViewData["Title"] = "Livros";
+}
+
+<h1 class="text-primary-emphasis">@ViewData["Title"]</h1>
+
+<p >
+    <a asp-action="Create" class="text-primary">Adicionar novo Livro</a>
+</p>
+<table class="table text-primary table-hover">
+    <thead>
+        <tr>
+            <th class="text-primary-emphasis">
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th class="text-primary-emphasis">
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th class="text-primary-emphasis">
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th class="text-primary-emphasis">
+                @Html.DisplayNameFor(model => model.ReleaseYear)
+            </th>
+            <th class="text-primary-emphasis">
+                @Html.DisplayNameFor(model => model.Genres)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-primary-emphasis">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td class="text-primary-emphasis">
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                    <td class="text-primary-emphasis">
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                    <td class="text-primary-emphasis">
+                    @Html.DisplayFor(modelItem => item.ReleaseYear)
+                </td>
+                    <td>
+                    @foreach (Genre genre in item.Genres)
+                    {
+                        <a asp-controller="Genres" asp-action="Details" asp-route-id="@genre.Id" class="text-primary">@genre.Name</a> <br />
+                    }                    
+                </td>
+
+                <td class="text-right">
+                    <a type="button"
+                        title="Detalhes"
+                        class="btn btn-outline-info px-2 py-1 rounded mx-1"
+                        asp-action="Details"
+                        asp-route-id="@item.Id">
+                        <i class="bi bi-list-ul"></i>
+                    </a>
+                    <a type="button"
+                        title="Editar"
+                        class="btn btn-outline-warning px-2 py-1 rounded mx-1" asp-action="Edit"
+                        asp-route-id="@item.Id">
+                        <i class="bi bi-pencil-fill"></i>
+                    </a>
+                    <a type="button"
+                        title="Excluir"
+                        class="btn btn-outline-danger px-2 py-1 rounded mx-1"
+                        asp-action="Delete"
+                        asp-route-id="@item.Id">
+                        <i class="bi bi-trash-fill"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

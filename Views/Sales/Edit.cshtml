@@ -1,0 +1,48 @@
+﻿@model Bookstore.Models.ViewModels.SaleFormViewModel
+
+@{
+    ViewData["Title"] = "Editar Venda";
+}
+
+<h1 class="text-primary-emphasis">@ViewData["Title"]</h1>
+
+<h4 class="lead text-secondary-emphasis">Altere as informações desejadas abaixo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Sale.Id" />
+            <div class="form-group">
+                <label asp-for="Sale.Date" class="control-label"></label>
+                <input asp-for="Sale.Date" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="Sale.Date" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SelectedBooksIds" class="control-label"></label>
+                <br />
+                <span class="text-muted">Segure Ctrl para selecionar mais de um item</span>
+                <select multiple="multiple" asp-for="SelectedBooksIds" asp-items="Model.BooksSelect" placeholder="Selecione os Livros" class="form-select"></select>
+                <span asp-validation-for="SelectedBooksIds" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SelectedSellerId" class="control-label"></label>
+                <br />
+                <select asp-for="SelectedSellerId" asp-items="Model.SellersSelect" placeholder="Selecione o Vendedor" class="form-select"></select>
+                <span asp-validation-for="SelectedSellerId" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3 mb-5">
+                <input type="submit" value="Salvar Alterações" class="btn btn-outline-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="text-primary">Voltar para a lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
